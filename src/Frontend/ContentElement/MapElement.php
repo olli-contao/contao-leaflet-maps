@@ -15,6 +15,8 @@ declare(strict_types=1);
 namespace Netzmacht\Contao\Leaflet\Frontend\ContentElement;
 
 use Netzmacht\Contao\Leaflet\Frontend\AbstractMapHybrid;
+use Netzmacht\Contao\Toolkit\Component\AbstractComponent;
+use function trim;
 
 /**
  * The content element for the leaflet map.
@@ -29,6 +31,14 @@ class MapElement extends AbstractMapHybrid
      * @var string
      */
     protected $templateName = 'ce_leaflet_map';
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function compileCssClass(): string
+    {
+        return trim('ce_' . $this->get('type') . ' ' . AbstractComponent::compileCssClass());
+    }
 
     /**
      * Get the identifier.
